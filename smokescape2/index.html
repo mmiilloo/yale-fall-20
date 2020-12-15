@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>smoke signal</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.png">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/smokescape.json", {onProgress: UnityProgress});
+
+      window.addEventListener("resize", onResize);
+
+      function onResize()
+      {
+        unityInstance.SendMessage("DebugText", "SetWidth", window.innerWidth);
+        unityInstance.SendMessage("DebugText", "SetHeight", window.innerHeight);
+        unityInstance.SendMessage("DebugText", "OnResize");
+      }
+
+    </script>
+  </head>
+
+    <body style="margin:0; overflow:hidden;">
+
+      <div id="unityContainer" style="width: 100vw; height: 100vh"></div>
+
+      <div id="me"></div>
+          <h4>Remote video</h4>
+          <div id="remote-container">
+          </div>
+          <script src="./scripts/script.js"></script>
+
+          <style>
+
+          #me{
+          position: relative;
+          width: 50%;
+          margin: 0 auto;
+          display: block;
+      }
+      #me video{
+          position: relative !important;
+      }
+      #remote-container{
+          display: flex;
+      }
+      #remote-container video{
+          height: auto;
+          position: relative !important;
+      }
+
+      </style>
+
+    <script src="./AgoraRTCSDK-3.3.1.js"></script>
+
+  </body>
+</html>
